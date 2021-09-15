@@ -32,42 +32,18 @@ dropZone.addEventListener('dragover', e => {
 dropZone.addEventListener('drop', e => {
    const imagePath = e.dataTransfer.getData('text/plain');
    e.preventDefault()
-   coordinates = map.containerPointToLatLng(L.point([e.clientX,e.clientY]))
+   console.log(e.clientX);
+   console.log(e.clientY);
+   coordinates = map.containerPointToLatLng(L.point([e.clientX ,e.clientY - 120]))
    L.marker(coordinates, {icon: L.icon({iconUrl: imagePath}),
   	draggable: true}).addTo(map)
 });
 
-//For movile touch
-windowSmall.addEventListener('touchmove', function(e) {
-   // grab the location of touch
-   var touchLocation = e.targetTouches[0];  
-   //windowSmall chanched position absolute whe fires touch event
-   windowSmall.classList.add("touched");
-   // assign windowSmall new coordinates based on the touch.
-   //windowSmall.style.left = touchLocation.pageX + 'px';
-   //windowSmall.style.top = touchLocation.pageY + 'px';
-
-   //
-   coordinates = map.containerPointToLatLng(L.point([touchLocation.pageX,touchLocation.pageY]));
-   L.marker(coordinates, {icon: L.icon({iconUrl: `window-small.png`,iconSize: [38,95]})}).addTo(map);
-})
-
 windowSmall.addEventListener('touchend', function(e) {
-   // current box position.
-   var x = parseInt(windowSmall.style.left);
-   var y = parseInt(windowSmall.style.top);
+   // grab the location of touch
+   var touchLocation = e.changedTouches[0];
+   
+   coordinates = map.containerPointToLatLng(L.point([touchLocation.pageX ,touchLocation.pageY - 120]));
+   L.marker(coordinates, {icon: L.icon({iconUrl: "window-small.png"}),
+  	draggable: true}).addTo(map) 
  })
-
-// target = document.getElementById("map")
-// target.ondragover = function (e) {
-//  	e.preventDefault()
-//   e.dataTransfer.dropEffect = "move"
-// }
-
-// target.ondrop = function (e) {
-//  	e.preventDefault()
-//   imagePath = e.dataTransfer.getData("text/plain")
-//   coordinates = map.containerPointToLatLng(L.point([e.clientX,e.clientY]))
-//   L.marker(coordinates, {icon: L.icon({iconUrl: imagePath}),
-//  	draggable: true}).addTo(map)
-// }
