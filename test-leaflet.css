@@ -5,16 +5,18 @@ body {
     font-size: 10px;
 }
 #map {
-    height: 50vh;
-    width: 50vw;
+    width: auto;
+    height: 400px;    
 }
 
 .component-architecture-plane {
-    width: 80px;
+    position: absolute;
+    z-index: 1000;
+    top:150px;
+    width: 150px;
     height: 120px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 4px;
-    text-align: center;
     display: flex;
     flex-direction: column;
     padding: 1rem;
