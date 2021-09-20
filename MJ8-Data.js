@@ -59,7 +59,6 @@ const windowModal =
    '</div>'+
 '</form>';
 
-coordinates = map.containerPointToLatLng(L.point([500, 150]))
-L.marker(coordinates, {icon: L.icon({iconUrl: "window-small.png"}),
-  	draggable: true}).addTo(map).bindPopup(windowModal);
+coordinates = [57.70349, 11.88074];
+L.marker(coordinates, {icon: L.icon({iconUrl: "window-small.png"})}).addTo(map).bindPopup(windowModal);
 
