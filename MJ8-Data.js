@@ -62,3 +62,28 @@ const windowModal =
 coordinates = [57.70349, 11.88074];
 L.marker(coordinates, {icon: L.icon({iconUrl: "window-small.png"})}).addTo(map).bindPopup(windowModal);
 
+function highlightFeature(e){
+   var layer = e.target;
+
+   layer.setStyle({
+       weight: 5,
+       color: '#fff',
+       dashArray:'',
+       fillOpacity: 0.7
+   });
+
+   if(!L.Browser.ie && !L.Browser.opera && !L.Browser.edge){
+       layer.bringToFront();
+   }
+}
+
+function resetHighlight(e) {
+   geojson.resetStyle(e.target);
+}
+
+function onEachFeature(feature, layer){
+   layer.on({
+       mouseover: highlightFeature,
+       mouseout: resetHighlight
+   });            
+}
